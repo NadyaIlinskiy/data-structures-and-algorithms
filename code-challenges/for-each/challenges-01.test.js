@@ -30,19 +30,14 @@ Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
 const addValues = (arr, value) => {
-  let a = [];
-  a = arr;
-  a.push(value);
-  return a;
+  arr.push(value);
 };
 
-
 const addNumbers = (num, arr, times, callback) => {
-  let a = [];
   for (let i = 0; i < times; i++){
-    a = callback(arr, num);
+    callback(arr, num);
   }
-  return a;
+  return arr;
 };
 
 
@@ -61,22 +56,16 @@ Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
 const removeOne = (num, arr) => {
-  let a = [];
-  a = arr;
   if (num%3===2){
-    a.pop();
+    arr.pop();
   }
-  return a;
 };
 
 const removeElements = (arr, callback) => {
-  let a = [];
-  a = arr;
-  let b =[];
-  for (let i = 0; i < a.length+1; i++){
-    b = callback(i, a);
+  for (let i = 0; i < arr.length; i++){
+    callback(arr[i], arr);
   }
-  return b;
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -87,6 +76,10 @@ Write a function named removeWithForEach that produces the same output as challe
 
 const removeWithForEach = (arr, callback) => {
   // Solution code here...
+  arr.forEach(el => {
+    callback(el, arr);
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
