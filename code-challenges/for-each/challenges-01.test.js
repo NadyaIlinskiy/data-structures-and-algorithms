@@ -75,7 +75,6 @@ Write a function named removeWithForEach that produces the same output as challe
 ------------------------------------------------------------------------------------------------ */
 
 const removeWithForEach = (arr, callback) => {
-  // Solution code here...
   arr.forEach(el => {
     callback(el, arr);
   });
@@ -93,8 +92,17 @@ This anonymous function should accept up to three arguments: the element, the in
 ------------------------------------------------------------------------------------------------ */
 
 const removeWithAnon = (arr) => {
-  // Solution code here...
+  arr.forEach(function(part, index) {
+    if (this[index] % 3 === 2){
+      this.pop();
+    }
+  }, arr);
+  return arr; 
 };
+  
+   
+
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -110,12 +118,21 @@ The inventory is formatted like this:
   { name: 'blueberries', available: false }
 ]
 
-This function should use forEach to populate your grocery list based on the store's inventory. If the item is available, add it to your list. Return the final list.
+This function should use forEach to populate your grocery list based on the store's inventory. 
+If the item is available, add it to your list. Return the final list.
 ------------------------------------------------------------------------------------------------ */
 
 const createList = (availableItems) => {
-  // Solution code here...
+  let result =[];
+  availableItems.forEach(function(el) {
+    if (el.available){
+      result.push(el.name)
+    }
+  });
+  return result;
 };
+
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
@@ -132,7 +149,19 @@ Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
 
 const fizzbuzz = (arr) => {
-  // Solution code here...
+  let result =[];
+  arr.forEach(function(el) {
+    if (el % 15 === 0){
+      result.push('Fizz Buzz');
+    } else if (el % 3 === 0){
+      result.push('Fizz')
+    } else if (el % 5 === 0) {
+      result.push('Buzz');
+    } else {
+      result.push(el);
+    }
+  });
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
