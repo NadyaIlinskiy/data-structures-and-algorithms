@@ -49,21 +49,34 @@ const addNumbers = (num, arr, times, callback) => {
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
-Write a function named removeOne that takes in a number and an array. If the number divided by three has a remainder of two, pop one element off of the array.
+Write a function named removeOne that takes in a number and an array. 
+If the number divided by three has a remainder of two, pop one element off of the array.
 
 Hint: you may want to look into the modulo operation.
 
-Then, write a function named removeElements that takes in an array and a callback. This function should use a for loop to iterate over the array and invoke the callback once for each element in the array.
+Then, write a function named removeElements that takes in an array and a callback. 
+This function should use a for loop to iterate over the array and invoke the callback once for each element in the array.
 
 Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
 const removeOne = (num, arr) => {
-  // Solution code here...
+  let a = [];
+  a = arr;
+  if (num%3===2){
+    a.pop();
+  }
+  return a;
 };
 
 const removeElements = (arr, callback) => {
-  // Solution code here...
+  let a = [];
+  a = arr;
+  let b =[];
+  for (let i = 0; i < a.length+1; i++){
+    b = callback(i, a);
+  }
+  return b;
 };
 
 /* ------------------------------------------------------------------------------------------------
