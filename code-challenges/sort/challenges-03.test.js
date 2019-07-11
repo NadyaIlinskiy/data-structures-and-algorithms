@@ -94,7 +94,8 @@ const sortNumbersByLength = (arr) => {
 /*-----------------------------------------------------------------------------------------------
 CHALLENGE 7
 
-Write a function named sortPeople that takes in an array of Person objects, each of which has firstName, lastName, and age properties, and sorts those people by their last names. Do not worry about capitalization or first names.
+Write a function named sortPeople that takes in an array of Person objects, each of which has firstName, 
+lastName, and age properties, and sorts those people by their last names. Do not worry about capitalization or first names.
 ------------------------------------------------------------------------------------------------ */
 
 function Person(firstName, lastName, age) {
@@ -111,12 +112,15 @@ const people = [
 
 const sortPeople = (arr) => {
   // Solution code here...
+  arr.sort((a, b) => a.lastName < b.lastName ? -1 : a.lastName > b.lastName ? 1 : 0 );
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8
 
-Write a function named sortPeopleBetter that takes in an array of Person objects, each of which has firstName, lastName, and age properties, and sorts those people by their last names.
+Write a function named sortPeopleBetter that takes in an array of Person objects, each of which has firstName,
+lastName, and age properties, and sorts those people by their last names.
 
 If two people share the same last name, alphabetize on their first name.
 
@@ -125,6 +129,9 @@ If two people have the same full name, the younger one should come first. Do not
 
 const sortPeopleBetter = (arr) => {
   // Solution code here...
+  arr.sort((a, b) => a.lastName < b.lastName ? -1 : a.lastName > b.lastName ? 1 
+    : a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1 : a.age - b.age);
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
