@@ -41,9 +41,12 @@ const wordsToCharList = (str) => {  //I've renamed arr to str as 'arr' as input 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
-You are making a grocery list for ingredients needed in the gruffalo crumble recipe, below. Rather than taking the entire recipe, you only want a list of the item names.
+You are making a grocery list for ingredients needed in the gruffalo crumble recipe, below. 
+Rather than taking the entire recipe, you only want a list of the item names.
 
-Write a function named listFoods that takes in the recipe and returns a new array of the food items without any amount or units. Just the name. For example, '1 cup flour' will return 'flour'.
+Write a function named listFoods that takes in the recipe and returns a new array
+of the food items without any amount or units. 
+Just the name. For example, '1 cup flour' will return 'flour'.
 
 Use slice for this function, maybe more than once. The Array.indexOf() method may also be helpful.
 
@@ -81,9 +84,18 @@ const gruffaloCrumble = {
 
 const listFoods = (recipe) => {
   let result = [];
+  let ingredients = recipe.ingredients;
   // Solution code here...
+  ingredients.forEach(element => {
+    let first_space_index = element.indexOf(' ');
+    let second_space_index = element.indexOf(' ', first_space_index + 1);
+    let ingredient = element.slice(second_space_index + 1)
+    result.push(ingredient);
+  });
   return result;
 };
+
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -95,7 +107,12 @@ You may also use other string or array methods.
 
 const splitFoods = (recipe) => {
   let result = [];
+  let ingredients = recipe.ingredients;
   // Solution code here...
+  ingredients.forEach(element => {
+    let ingredient = element.split(' ').slice(2, element.length).join(' ');
+    result.push(ingredient);
+  });
   return result;
 };
 
@@ -104,21 +121,29 @@ CHALLENGE 5
 
 Use the same recipe from Challenge 3, above.
 
-Write a function named stepAction that takes in the recipe and extracts the action verbs from the steps. Fortunate for you, the action verbs are the first word of each action.
+Write a function named stepAction that takes in the recipe and extracts the action verbs
+from the steps. Fortunate for you, the action verbs are the first word of each action.
 
-Return a new array containing just the verbs. For example, ['Mix until evenly distributed'] returns ['Mix'].
+Return a new array containing just the verbs. For example,
+['Mix until evenly distributed'] returns ['Mix'].
 ------------------------------------------------------------------------------------------------ */
 
 const stepActions = (recipe) => {
   let result = [];
+  let ingredients = recipe.steps;
   // Solution code here...
+  ingredients.forEach(element => {
+    let ingredient = element.split(' ').slice(0, 1).join(' ');
+    result.push(ingredient);
+  });
   return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
-Write a function named removeEvenValues that, given an array of integers as input, deletes all even values from the array, leaving no 'gaps' behind.
+Write a function named removeEvenValues that, given an array of integers as input,
+deletes all even values from the array, leaving no 'gaps' behind.
 
 The array should be modified in-place.
 
@@ -130,6 +155,15 @@ For example:
 
 const removeEvenValues = (arr) => {
   // Solution code here...
+  let i =0;
+  while (i < arr.length){
+    if(arr[i]%2===0){
+      arr.splice(i, 1);
+    }
+    else {
+      i++;
+    }
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
