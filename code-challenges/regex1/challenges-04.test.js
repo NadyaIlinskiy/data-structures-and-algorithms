@@ -122,14 +122,12 @@ Do not use the vertical bar (pipe) character.
 Hint: All of these words end with the letters "ells".
 ------------------------------------------------------------------------------------------------ */
 
-const seashells = 'She sells seashells by the seashore. The shells she sells are surely seashells. So if she sells shells on the seashore, I\'m sure she sells seashore shells.';
+// const seashells = 'She sells seashells by the seashore. The shells she sells are surely seashells. So if she sells shells on the seashore, I\'m sure she sells seashore shells.';
 
 // const findShells = (str) => {
 //   // Solution code here...
-//   let arr = str.match(/(^|\s)[A-Za-z]*ells(\s|$)/g);
-//   for(let i=0; i<arr.length; i++){
-//     arr[i] = arr[i].trim();
-//   }
+//   let arr = str.match(str.match(/\b\w*ells\b/g));
+
 //   return arr;
 // };
 
