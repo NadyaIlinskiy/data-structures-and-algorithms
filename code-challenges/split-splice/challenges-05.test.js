@@ -7,7 +7,8 @@ Write a function named howMuchPencil that takes in a string, as written on the s
 
 As you sharpen the pencil, the string will become shorter and shorter, starting by removing the first letter.
 
-Your function should use slice within a loop and return an array of each successive string result from losing letters to the sharpener, until nothing is left.
+Your function should use slice within a loop and return an array of each successive string result
+from losing letters to the sharpener, until nothing is left.
 
 For example, if the input is 'Welcome', the output will be:
 ['Welcome', 'elcome', 'lcome', 'come', 'ome', 'me', 'e', ''].
@@ -16,19 +17,24 @@ For example, if the input is 'Welcome', the output will be:
 const howMuchPencil = (str) => {
   let result = [];
   // Solution code here...
+  for (let i = 0; i < str.length+1; i++){
+    result.push(str.slice(i, str.length+1));
+  }
   return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
-Write a function name wordsToCharList that, given a string as input, returns a new array where every element is a character of the input string.
+Write a function name wordsToCharList that, given a string as input, returns a new array
+where every element is a character of the input string.
 
 For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
 ------------------------------------------------------------------------------------------------ */
 
-const wordsToCharList = (arr) => {
+const wordsToCharList = (str) => {  //I've renamed arr to str as 'arr' as input here is misleading - Nadya
   // Solution code here...
+  return str.split('');
 };
 
 
