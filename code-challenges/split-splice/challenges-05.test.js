@@ -169,11 +169,15 @@ const removeEvenValues = (arr) => {
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
 
-Write a function named removeLastCharacters that takes in a string and a number. The numberOfCharacters argument determines how many characters will be removed from the end of the string. Return the resulting string.
+Write a function named removeLastCharacters that takes in a string and a number. 
+The numberOfCharacters argument determines
+how many characters will be removed from the end of the string. Return the resulting string.
 
-If the numberOfCharacters argument is greater than the length of the input string, the function should return an empty string.
+If the numberOfCharacters argument is greater than the length of the input string, 
+the function should return an empty string.
 
-If the numberOfCharacters argument input is a negative number, the function should return the input string without any changes.
+If the numberOfCharacters argument input is a negative number, 
+the function should return the input string without any changes.
 
 For example:
 removeLastCharacters('Gregor', 2) returns 'Greg'
@@ -183,7 +187,18 @@ removeLastCharacters('Gregor', 9) returns ''
 
 const removeLastCharacters = (str, numberOfCharacters) => {
   // Solution code here...
+  let ln = str.length;
+  if (numberOfCharacters <= 0){
+    return str;
+  } else if (numberOfCharacters > ln){
+    return '';
+  } else if (numberOfCharacters <= ln){
+    return str.slice(0, ln-numberOfCharacters);
+  } else {
+    return str;
+  }
 };
+
 
 
 /* ------------------------------------------------------------------------------------------------
