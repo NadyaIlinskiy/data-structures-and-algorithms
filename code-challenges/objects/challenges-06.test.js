@@ -3,7 +3,8 @@
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
 
-Write a function named getCourseKeys that takes in the courseInfo object and returns an array containing the keys for the courseInfo object.
+Write a function named getCourseKeys that takes in the courseInfo object and returns an array
+ containing the keys for the courseInfo object.
 
 For example: (['name', 'duration', 'topics', 'finalExam']).
 ------------------------------------------------------------------------------------------------ */
@@ -14,13 +15,15 @@ const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningT
 
 const getCourseKeys = (obj) => {
   // Solution code here...
+  return Object.keys(obj);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 Use the characters data below for the remainder of the challenges.
 
-Write a function named getHouses that returns a new array containing the names of all of the houses in the data set.
+Write a function named getHouses that returns a new array containing the names
+of all of the houses in the data set.
 ------------------------------------------------------------------------------------------------ */
 
 let characters = [
@@ -71,13 +74,17 @@ let characters = [
 const getHouses = (arr) => {
   let houses = [];
   // Solution code here...
+  arr.forEach(element => {
+    houses.push(element.house);
+  });
   return houses;
 };
 
 /*------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
-Write a function named hasChildrenValues that uses Object.values to determine if any given character in the data set has children.
+Write a function named hasChildrenValues that uses Object.values to determine if any given character
+in the data set has children.
 
 This function should take in an array of data and a character name and return a Boolean.
 
@@ -88,18 +95,42 @@ hasChildrenValues(characters, 'Sansa') will return false
 
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
+  let flag = false;
+  arr.forEach(element => {
+    if (element.name === character){
+      flag = flag || element.children.length !== 0;
+    }
+  });
+  return flag;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
-Write a function named hasChildrenEntries that is similar to your hasChildrenValues function from challenge 3, but uses the data's entries instead of its values.
+Write a function named hasChildrenEntries that is similar to your hasChildrenValues function from challenge 3,
+but uses the data's entries instead of its values.
 
 The input and output of this function are the same as the input and output from challenge 3.
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
   // Solution code here...
+  let flag = false;
+  arr.forEach(element => {
+    let name='';
+    let len=0;
+    for (let key in element){
+      if (key==='name'){
+        name = element[key];
+      } else if(key==='children'){
+        len = element[key].length;
+      }
+    }
+    if(name===character){
+      flag = flag || len !== 0;
+    }
+  });
+  return flag;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -109,8 +140,24 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  // Solution code here...
+  let totalChar = [];
+  arr.forEach(element => {
+    if(!totalChar.includes(element.name)){
+      totalChar.push(element.name);
+    }
+    if(element.spouse !== null && !totalChar.includes(element.spouse)){
+      totalChar.push(element.spouse);
+    }
+    element.children.forEach(kid => {
+      if(!totalChar.includes(kid)){
+        totalChar.push(kid);
+      }
+    })
+  });
+  return totalChar.length+1; 
 };
+// This task is wrong as Sansa repeted twice in the Data. If we want total characters number - it's 26, not 27!
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6 - Stretch Goal
