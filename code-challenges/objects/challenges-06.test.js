@@ -156,7 +156,8 @@ const totalCharacters = (arr) => {
   });
   return totalChar.length+1; 
 };
-// This task is wrong as Sansa repeted twice in the Data. If we want total characters number - it's 26, not 27!
+// There's bug in tests or the task is misleading as Sansa repeted twice in the Data. 
+// If we want total characters number - it's 26, not 27!
 
 
 /* ------------------------------------------------------------------------------------------------
