@@ -1,11 +1,16 @@
+/* eslint-disable indent */
 'use strict';
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
 
-You friend Pat has a chain of stores around the greater Seattle area. He specializes in selling salmon cookies. Pat has data for the hourly sales of cookies per hour for each store. He wants to create an array of the total number of cookies sold per hour for all of his stores combined.
+You friend Pat has a chain of stores around the greater Seattle area. He specializes in selling salmon cookies. 
+Pat has data for the hourly sales of cookies per hour for each store. 
+He wants to create an array of the total number of cookies sold per hour for all of his stores combined.
 
-Write a function named grandTotal that adds up the cookies sales for each hour of operation for all of the stores combined. For example, the first element in the hourlySales array should be the sum of the cookies sold in the 9:00 a.m. hour at all five stores combined.
+Write a function named grandTotal that adds up the cookies sales for each hour of operation
+for all of the stores combined. For example, the first element in the hourlySales
+array should be the sum of the cookies sold in the 9:00 a.m. hour at all five stores combined.
 
 For this example, the total at 9:00 a.m. is 17 + 26 + 7 + 5 + 33, or 88 total cookies.
 
@@ -24,7 +29,18 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   // Solution code here...
-
+  let result = [];
+  for (let i = 0; i < stores.length; i++){
+    let arr = stores[i];
+    for (let j = 0; j < arr.length; j++){
+      if (i===0){
+        result.push(arr[j]);
+      }else {
+        result[j]+=arr[j];
+      }
+    }
+  }
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -34,11 +50,17 @@ Pat has decided that he would also like to organize his data as objects containi
 
 Here is sample data for the 9:00 sales: { sales: '88 cookies', time: '9 a.m.' }.
 
-Write a function named salesData that uses forEach to iterate over the hourlySales array and create an object for each hour. Return an array of the formatted data.
+Write a function named salesData that uses forEach to iterate over the hourlySales array and create an
+object for each hour. Return an array of the formatted data.
 ------------------------------------------------------------------------------------------------ */
 
 const salesData = (hours, data) => {
   // Solution code here...
+  let results = [];
+  data.forEach((x,i) => {
+    results.push({ sales: x + ' cookies', time:  hours[i]})
+  })
+  return results;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -61,6 +83,17 @@ const errands = [
 
 const howManyTreats = (arr) => {
   // Solution code here...
+  let q = 0;
+  arr.forEach(el => {
+    if(el.store === 'Pet store'){
+      el.items.forEach(e => {
+        if(e.name === 'Treats'){
+          q = e.quantity;
+        }
+      })
+    }
+  })
+  return q;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -68,7 +101,8 @@ CHALLENGE 4
 
 Write a function named battleship that accepts a 2D array and two numbers: a row coordinate and a column coordinate.
 
-Return "hit" or "miss" depending on if there's part of a boat at that position in the array. Assume the array has only one of two values at each index. '#' for part of a boat, or ' ' for open water.
+Return "hit" or "miss" depending on if there's part of a boat at that position in the array. 
+Assume the array has only one of two values at each index. '#' for part of a boat, or ' ' for open water.
 
 Here is a sample board:
 [
@@ -83,26 +117,42 @@ The top row of the board is considered row zero and row numbers increase as they
 
 const battleship = (board, row, col) => {
   //  Solution code here...
+  let res = 'miss';
+  board.forEach((el, row_) => 
+    el.forEach((e, col_) => {
+        if(row===row_&&col===col_){
+            res= e==='#' ? 'hit' : 'miss';
+        }
+    }
+
+    ))
+    return res;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
 
-Write a function named calculateProduct that takes in a two-dimensional array of numbers, multiplies all of the numbers in each array, and returns the final product. This function should work for any number of inner arrays.
+Write a function named calculateProduct that takes in a two-dimensional array of numbers, 
+multiplies all of the numbers in each array, and returns the final product. This function should work for any number of inner arrays.
 
 For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 const calculateProduct = (numbers) => {
   // Solution code here...
+  let res = 1;
+  numbers.forEach(el => el.forEach(e =>{res*=e}));
+  return res;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
-Write a function named averageDailyTemperature that accepts a two-dimensional array representing average daily temperatures grouped week-by-week.
+Write a function named averageDailyTemperature that accepts a two-dimensional array representing average daily
+temperatures grouped week-by-week.
 
-Calculate the average daily temperature during that entire period. Your output should be a single number. Write your function so it could accept an array with any number of weeks given to it.
+Calculate the average daily temperature during that entire period. Your output should be a single number.
+Write your function so it could accept an array with any number of weeks given to it.
 ------------------------------------------------------------------------------------------------ */
 
 // Real daily average temperatures for Seattle, October 1-28 2017
@@ -115,6 +165,13 @@ const weeklyTemperatures = [
 
 const averageDailyTemperature = (weather) => {
   // Solution code here...
+  let res = 0;
+  let count = 0;
+  weather.forEach(el => el.forEach(e =>{
+      res+=e;
+      count+=1;
+    }));
+  return count !== 0? res/count: 0;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -124,7 +181,8 @@ Write a function named lowestWeeklyAverage that accepts a two-dimensional array 
 
 Calculate the average temperature for each week and return the value of the lowest weekly average temperature.
 
-For example, in the data set below, the lowest weekly average is 46, which is the average of the temperatures in week 2. All other weeks have average temperatures that are greater than 46.
+For example, in the data set below, the lowest weekly average is 46, which is the average of the temperatures in week 2.
+ All other weeks have average temperatures that are greater than 46.
 ------------------------------------------------------------------------------------------------ */
 
 let lowestWeeklyTemperatureData = [
@@ -136,6 +194,20 @@ let lowestWeeklyTemperatureData = [
 
 const lowestWeeklyAverage = (weather) => {
   // Solution code here...
+  let minAvr = null;
+  weather.forEach(el => {
+      let res = 0;
+      let count = 0;
+      el.forEach(e => {
+          res+=e;
+          count+=1;
+      })
+      let avr = count !==0 ? res/count:0;
+      if (count !==0 && (minAvr===null||avr < minAvr)){
+          minAvr = avr;
+      }
+  })
+  return minAvr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -145,13 +217,23 @@ Write a function called excel that accepts a string representing rows and column
 
 Rows are seperated by newline "\n" characters. Columns are seperated by commas. For example, '1,1,1\n4,4,4\n9,9,9' represents a 3x3 table.
 
-The function should parse the string as rows and columns and compute the sum of the values for each row. Return an array with the sum of the values in each row.
+The function should parse the string as rows and columns and compute the sum of the values for each row.
+ Return an array with the sum of the values in each row.
 
 For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 const excel = (str) => {
   // Solution code here...
+  let res = []
+  str.split('\n').forEach(row => {
+      let s = 0
+      row.split(',').forEach(x => {
+          s += +x
+      })
+      res.push(s);
+  })
+  return res;
 };
 
 /* ------------------------------------------------------------------------------------------------
